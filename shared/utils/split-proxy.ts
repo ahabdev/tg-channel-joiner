@@ -6,7 +6,7 @@ export function splitProxy(proxyString: string): Proxy {
     ip: splitedProxy[0],
     port: Number(splitedProxy[1]),
     socksType: 5,
-    password: splitedProxy[2],
-    username: splitedProxy[3],
+    username: splitedProxy[2],
+    password: splitedProxy[3],
   };
 }
