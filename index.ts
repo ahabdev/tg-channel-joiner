@@ -30,6 +30,8 @@ const rl = readline.createInterface({
 
     for (const i in numbers) {
       if (config.proxy === 'true') {
+        if (numbers.length !== proxies.length)
+          throw new Error(`Number of proxies does not equal number of numbers`);
         proxy = splitProxy(proxies[i]);
       }
 
