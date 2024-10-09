@@ -10,7 +10,7 @@ bun install
 
 Update .env file to your `API_ID`, `API_HASH` and `PROXY` to `true` or `false` depending on whether you're using one.. 
 
-Add channels to join into `data/channels.txt` line by line.  
+Add urls to join into `data/urls.txt` line by line.  
 Add phone numbers of your users into `data/users.txt` line by line.  
 Add proxies in format of `ip:port:username:password`  
 
