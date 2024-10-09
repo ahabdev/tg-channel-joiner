@@ -1,6 +1,6 @@
 import readline from 'readline';
 import * as fs from 'fs/promises';
-import { Joiner } from './services/joiner';
+import { JoinerFactory } from './services/joiner-factory';
 import { config } from './shared/config';
 import type { Proxy } from './types/proxy';
 import { TelegramAuth } from './services/auth';
@@ -21,7 +21,7 @@ const rl = readline.createInterface({
     const datas = await Promise.all([
       fs.readFile('data/users.txt', 'utf-8'),
       fs.readFile('data/proxy.txt', 'utf-8'),
-      fs.readFile('data/channels.txt', 'utf-8'),
+      fs.readFile('data/urls.txt', 'utf-8'),
     ]);
     const [numbers, proxies, urls] = datas.map((data) => {
       return data.split('\n').map((d) => d.trim());
@@ -41,9 +41,8 @@ const rl = readline.createInterface({
       });
 
       const authenticator = new TelegramAuth(numbers[i], rl, client);
-      const joiner = new Joiner(client, authenticator);
-      await joiner.start();
-      await joiner.joinBatch(urls);
+      const joiner = new JoinerFactory(client, authenticator);
+      await joiner.start(urls);
     }
 
     console.log('All users processed');
